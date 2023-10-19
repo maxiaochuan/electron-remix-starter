@@ -1,0 +1,7 @@
+{
+	"$schema": "https://json.schemastore.org/nodemon.json",
+	"exec": "tsc -p tsconfig.electron.json && electron .",
+	"watch": ["src"],
+	"ext": ".ts",
+	"ignore": ["build", "public/build"]
+}

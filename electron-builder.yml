@@ -1,0 +1,7 @@
+appId: "com.mxcins.app"
+productName: "abcde"
+files:
+  - "build"
+  - "desktop"
+  - "public"
+  - "remix.config.js"
