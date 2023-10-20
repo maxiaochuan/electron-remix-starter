@@ -1,4 +1,4 @@
-import { ApplicationInfoForProtocolReturnValue, app, protocol } from 'electron';
+import { app, protocol } from 'electron';
 import path from 'node:path';
 import {
   createRequestHandler,
@@ -12,8 +12,6 @@ import {
 	serveAsset,
 	serveRemixResponse,
 } from './serve';
-// const { serveAsset } = require("./asset-files.cjs")
-// const { serveRemixResponse } = require("./serve-remix-response.cjs")
 
 function asAbsolutePath(filePath: string, workingDirectory: string) {
   return path.isAbsolute(filePath) ? filePath : path.join(workingDirectory, filePath);
@@ -61,7 +59,6 @@ async function initRemix(options: InitRemixOptions) {
 	await app.whenReady()
 
 	protocol.interceptStreamProtocol("http", async (request, callback) => {
-		console.log('inter', request);
 		try {
 			const context = await getLoadContext?.(request)
 			const requestHandler = createRequestHandler(serverBuild, mode)

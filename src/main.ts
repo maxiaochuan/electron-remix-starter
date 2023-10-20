@@ -5,7 +5,6 @@ import { initRemix } from "./remix";
 let win: BrowserWindow
 
 async function createWindow(url: string) {
-  // Create the browser window.
   win = new BrowserWindow({
     height: 600,
     webPreferences: {
@@ -15,8 +14,6 @@ async function createWindow(url: string) {
     show: false,
   });
 
-  // and load the index.html of the app.
-  // await win.loadFile(path.join(__dirname, "../index.html"));
   await win.loadURL(url);
 
   win.show();
@@ -42,7 +39,7 @@ app.whenReady().then(() => {
       await createWindow(url);
 
     } catch (error) {
-      // dialog.showErrorBox("Error", getErrorStack(error));
+      dialog.showErrorBox("Error", getErrorStack(error));
     }
   })()
 })
