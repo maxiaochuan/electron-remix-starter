@@ -33,7 +33,8 @@ app.whenReady().then(() => {
       }
 
       const url = await initRemix({
-        serverBuild: path.join(__dirname, '../build/index.js'),
+        mode: process.env.NODE_ENV,
+        serverBuildPath: path.join(__dirname, '../build/index.js'),
       })
 
       await createWindow(url);
