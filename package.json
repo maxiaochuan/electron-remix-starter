@@ -22,6 +22,7 @@
     "@remix-run/react": "2.1.0",
     "@remix-run/server-runtime": "2.1.0",
     "isbot": "3.7.0",
+    "jotai": "2.5.0",
     "mime": "3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
