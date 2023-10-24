@@ -24,7 +24,7 @@ async function initRemix(options: InitRemixOptions) {
   } = options;
 
 	const serverBuild = require(serverBuildPath);
-	const handleRequest = createRequestHandler(serverBuild, mode);
+	let handleRequest = createRequestHandler(serverBuild, mode);
 	const absPublicFolderPath = path.join(app.getAppPath(), publicFolderPath); 
 
 	protocol.handle('http', async (request) => {
@@ -45,6 +45,7 @@ async function initRemix(options: InitRemixOptions) {
 			for await (const _event of watch(serverBuildPath)) {
 				purgeRequireCache(serverBuildPath)
 				await broadcastDevReady(require(serverBuildPath))
+				handleRequest = createRequestHandler(require(serverBuildPath), mode)
 			}
 		})()
 	}
@@ -57,7 +58,6 @@ async function initRemix(options: InitRemixOptions) {
 function purgeRequireCache(prefix: string) {
 	for (const key in require.cache) {
 		if (key.startsWith(prefix)) {
-			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
 			delete require.cache[key]
 		}
 	}
